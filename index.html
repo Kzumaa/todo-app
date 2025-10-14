@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List App</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1>📝 My Todo List</h1>
+      </header>
+      
+      <main class="main-container">
+        <!-- Add Todo Form -->
+        <section class="add-todo-section">
+          <h2>Add New Todo</h2>
+          <form id="todoForm" class="todo-form">
+            <div class="form-group">
+              <label for="title">Title *</label>
+              <input type="text" id="title" name="title" required placeholder="Enter todo title">
+            </div>
+            <div class="form-group">
+              <label for="description">Description *</label>
+              <textarea id="description" name="description" required placeholder="Enter todo description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="dueDate">Due Date (Optional)</label>
+              <input type="date" id="dueDate" name="dueDate">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Todo</button>
+            <button type="button" id="cancelEdit" class="btn btn-secondary" style="display: none;">Cancel Edit</button>
+          </form>
+        </section>
+
+        <!-- Search and Filter -->
+        <section class="filter-section">
+          <div class="search-filter-container">
+            <div class="search-box">
+              <input type="text" id="searchInput" placeholder="Search by title..." />
+            </div>
+            <div class="filter-box">
+              <label for="statusFilter">Filter by Status:</label>
+              <select id="statusFilter">
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="overdue">Overdue</option>
+                <option value="normal">Normal</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Todo Lists (3 columns) -->
+        <section class="todos-section">
+          <div class="todos-columns">
+            <!-- Completed Todos -->
+            <div class="todo-column completed-column">
+              <h2>✅ Completed</h2>
+              <div id="completedTodos" class="todo-list"></div>
+            </div>
+
+            <!-- Normal Todos -->
+            <div class="todo-column normal-column">
+              <h2>📋 Active</h2>
+              <div id="normalTodos" class="todo-list"></div>
+            </div>
+
+            <!-- Overdue Todos -->
+            <div class="todo-column overdue-column">
+              <h2>⚠️ Overdue</h2>
+              <div id="overdueTodos" class="todo-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pagination -->
+        <section class="pagination-section">
+          <div class="pagination-controls">
+            <button id="prevPage" class="btn btn-secondary">Previous</button>
+            <span id="pageInfo" class="page-info">Page 1</span>
+            <button id="nextPage" class="btn btn-secondary">Next</button>
+            <div class="page-size-selector">
+              <label for="pageSize">Items per page:</label>
+              <select id="pageSize">
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="12">12</option>
+                <option value="15">15</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Edit Modal -->
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Edit Todo</h2>
+          <form id="editForm">
+            <input type="hidden" id="editId">
+            <div class="form-group">
+              <label for="editTitle">Title *</label>
+              <input type="text" id="editTitle" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="editDescription">Description *</label>
+              <textarea id="editDescription" name="description" required rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="editDueDate">Due Date</label>
+              <input type="date" id="editDueDate" name="dueDate">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
