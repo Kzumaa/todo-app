@@ -1,18 +1,10 @@
 import "./style.css";
-import { TodoAppController } from "./controllers/TodoAppController";
+import { initTodoApp } from "./app";
 
 /**
  * Application Entry Point
- * Follows Clean Code and SOLID principles
+ * Simplified functional approach - no classes needed!
  */
-async function bootstrap(): Promise<void> {
-  try {
-    const app = new TodoAppController();
-    await app.initialize();
-  } catch (error) {
-    console.error("Failed to initialize application:", error);
-  }
-}
-
-// Start the application
-bootstrap();
+initTodoApp().catch((error) => {
+  console.error("Failed to initialize app:", error);
+});
